@@ -12,6 +12,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public User addUser(User user) {
+        if (user.getUsername().equals(getCheckUserNameExists(user.getUsername())) || (user.getEmail().equals(getCheckUserEmailExists(user.getEmail())))){
+            return null;
+            // Have method listening for null on front end
+            // if null returned, notify user they have to try again
+        }
         return userRepository.save(user);
     }
 
@@ -49,17 +54,25 @@ public class UserService {
         user.setEmail(email);
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        if (user.getEmail().equals(getCheckUserEmailExists(user.getEmail()))){
+            return null;
+            // Have method listening for null on front end
+            // if null returned, notify user they have to try again
+        }
         return userRepository.save(user);
     }
 
-    public User getCheckUserNameExists(String username){
-//        if (userRepository.findUserByUserName(username) != null){
-//            return userRepository.findUserByUserName(username);
-//        }
-        return null;
+    public String getCheckUserNameExists(String username){
+        if (userRepository.findUserByUserName(username) != null){
+            return username;
+        }
+        return "DOES NOT EXIST";
     }
 
-    public User getCheckUserEmailExists(String email){
-        return null;
+    public String getCheckUserEmailExists(String email){
+        if (userRepository.findUserByEmail(email) != null){
+            return email;
+        }
+        return "DOES NOT EXIST";
     }
 }
