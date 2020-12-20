@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController{
 
+
     @Autowired
     private UserService userService;
 
@@ -17,10 +18,10 @@ public class UserController{
     public ResponseEntity<User> addUser(@RequestBody User user){
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);}
 
-    @DeleteMapping("delete/{userID}")
+    @DeleteMapping("deleteuserbyid/{userID}")
     public void deleteUserById(@PathVariable Long userID){userService.deleteUserByUserId(userID);}
 
-    @DeleteMapping("delete/{userName}")
+    @DeleteMapping("deleteuserbyusername/{userName}")
     public void deleteUserByUserName(@PathVariable String userName){userService.deleteUserByUserName(userName);}
 
     @GetMapping("user/{userName}")
@@ -29,7 +30,7 @@ public class UserController{
     @GetMapping("user/{email}")
     public ResponseEntity<User> getUserByUserEmail(@PathVariable String email){return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);}
 
-    @PutMapping("user/{username}")
+    @PutMapping("user/{userName}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String username) {
         return new ResponseEntity<>(userService.putUserUpdate(username, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
