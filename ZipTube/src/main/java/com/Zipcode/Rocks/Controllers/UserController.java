@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController{
+    //user controller lets you use the methods from service by setting the end points
 
     @Autowired
     private UserService userService;
@@ -28,8 +29,8 @@ public class UserController{
     @GetMapping("user/{email}")
     public ResponseEntity<User> getUserByUserEmail(@PathVariable String email){return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);}
 
-    @PutMapping("user/{username}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String username) {
-        return new ResponseEntity<>(userService.putUserUpdate(username, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
+    @PutMapping("user/{userName}")
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String userName) {
+        return new ResponseEntity<>(userService.putUserUpdate(userName, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
 }

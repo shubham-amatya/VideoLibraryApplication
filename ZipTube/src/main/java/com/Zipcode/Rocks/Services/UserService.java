@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    //uses methods from User Repository to access, create, and edit Users in the repository
 
     @Autowired
     private UserRepository userRepository;
