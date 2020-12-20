@@ -15,8 +15,6 @@ public class UserService {
     public User addUser(User user) {
         if (user.getUsername().equals(getCheckUserNameExists(user.getUsername())) || (user.getEmail().equals(getCheckUserEmailExists(user.getEmail())))){
             return null;
-            // Have method listening for null on front end
-            // if null returned, notify user they have to try again
         }
         return userRepository.save(user);
     }
@@ -41,13 +39,6 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
-//    public User putUserUpdate(Long userId){
-//        User user = getUserByUserId(userId);
-//        if (user != null){
-//            User newUser
-//        }
-//    }
-
     public User putUserUpdate(String username, String password, String email, String firstName, String lastName){
         Long id = getUserByUserName(username).getUserId();
         User user = getUserByUserId(id);
@@ -57,8 +48,6 @@ public class UserService {
         user.setLastName(lastName);
         if (user.getEmail().equals(getCheckUserEmailExists(user.getEmail()))){
             return null;
-            // Have method listening for null on front end
-            // if null returned, notify user they have to try again
         }
         return userRepository.save(user);
     }
