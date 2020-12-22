@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 
+
 public class UserTest {
     User user = new User("helloKitty", "H!K!tt3", "Tabitha", "Maroon", "tabbym@aol.com");
 
