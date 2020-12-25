@@ -23,7 +23,7 @@ public class UserController{
     @DeleteMapping("deleteuserbyusername/{userName}")
     public void deleteUserByUserName(@PathVariable String userName){userService.deleteUserByUserName(userName);}
 
-    @GetMapping("user/{userName}")
+    @GetMapping("userbyusername/{userName}")
     public ResponseEntity<User> getUserByUserName(@PathVariable String userName){return new ResponseEntity<>(userService.getUserByUserName(userName), HttpStatus.OK);}
 
     @GetMapping("user/{email}")
