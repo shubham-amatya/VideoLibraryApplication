@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,12 +34,6 @@ public class VideoController {
     public ResponseEntity<Video> updateVideoByVideoId(@RequestBody Video video, @PathVariable Long videoId){
         return new ResponseEntity<>(videoService.updateVideoByVideoId(videoId,  video.getTitle(), video.getDescription()), HttpStatus.OK);
     }
-
-
-
-
-
-
 
 
 }
