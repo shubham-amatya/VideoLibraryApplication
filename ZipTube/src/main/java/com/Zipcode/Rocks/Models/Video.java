@@ -1,5 +1,7 @@
 package com.Zipcode.Rocks.Models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.sql.Time;
@@ -11,15 +13,18 @@ import java.util.Date;
 public class Video {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long videoId;
+    @NotNull
     private String userName;
     private String title;
     private String videoURL;
     private String description;
-    private LocalDate videoTimePosted;
+    @Temporal(TemporalType.DATE)
+    private Date videoTimePosted;
 
 
     public Video() {
@@ -30,7 +35,6 @@ public class Video {
         this.videoURL = videoURL;
         this.description = description;
         this.userName = userName;
-        this.videoTimePosted = LocalDate.now();
     }
 
     public Long getVideoId() {
@@ -73,7 +77,7 @@ public class Video {
         this.description = description;
     }
 
-    public LocalDate getVideoTimePosted() { return videoTimePosted; }
+    public Date getVideoTimePosted() { return videoTimePosted; }
 
-    public void setVideoTimePosted(LocalDate videoTimePosted) { this.videoTimePosted = videoTimePosted; }
+    public void setVideoTimePosted(Date videoTimePosted) { this.videoTimePosted = videoTimePosted; }
 }
