@@ -18,6 +18,10 @@ public class Comment {
 
     public Comment(){}
 
+    public Comment(String comment) {
+        this.comment = comment;
+    }
+
     public Comment(String userName, Long videoId, String comment) {
         this.userName = userName;
         this.videoId = videoId;
