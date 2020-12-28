@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @RestController
-@RequestMapping("/storage/")
+@RequestMapping("storage/")
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost"})
 public class VideoController {
 
@@ -25,24 +25,28 @@ public class VideoController {
         this.amazonClient = amazonClient;
     }
 
-    @PostMapping("/uploadFile")
-    public Video uploadFile(@RequestPart(value = "file") MultipartFile file) {
+    @PostMapping("/uploadVideo")
+    public Video uploadFile(@RequestPart(value = "video") MultipartFile file) {
         Video video = new Video();
         video.setVideoURL(this.amazonClient.uploadFile(file));
         return videoService.addVideo(video);
 
     }
 
-    @DeleteMapping("/deleteFile")
+    @DeleteMapping("/deleteVideo")
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
     }
 
+//    @PostMapping("video/addvideo")
+//    public ResponseEntity<Video> addVideo(@RequestBody Video video){
+//        return new ResponseEntity<>(videoService.addVideo(video), HttpStatus.CREATED);}
+
     @DeleteMapping("deletevideo/{videoId}")
     public void deleteVideoByVideoId(@PathVariable Long videoId){videoService.deleteVideoByVideoId(videoId);}
 
-    @GetMapping("videobyusername/{userName}")
-    public ResponseEntity<Video> getVideoByUserName(@PathVariable String userName){return new ResponseEntity<>(videoService.getVideoByUserName(userName), HttpStatus.OK);}
+//    @GetMapping("videobyusername/{userName}")
+//    public ResponseEntity<Video> getVideoByUserName(@PathVariable String userName){return new ResponseEntity<>(videoService.getVideoByUserName(userName), HttpStatus.OK);}
 
     @GetMapping("allvideosbyusername/{userName}")
     public ResponseEntity<List<Video>> getAllVideoByUserName(@PathVariable String userName){

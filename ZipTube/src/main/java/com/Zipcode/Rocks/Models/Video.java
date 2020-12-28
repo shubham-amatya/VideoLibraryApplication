@@ -1,11 +1,6 @@
 package com.Zipcode.Rocks.Models;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,7 +13,6 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long videoId;
-    @NotNull
     private String userName;
     private String title;
     private String videoURL;

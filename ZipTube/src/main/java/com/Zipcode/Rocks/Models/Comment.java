@@ -1,7 +1,6 @@
 package com.Zipcode.Rocks.Models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
