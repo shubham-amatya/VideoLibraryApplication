@@ -2,6 +2,7 @@ package com.Zipcode.Rocks.Services;
 
 
 import com.Zipcode.Rocks.Models.Video;
+import com.Zipcode.Rocks.Repositories.UserRepository;
 import com.Zipcode.Rocks.Repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class VideoService {
 
     @Autowired
     private VideoRepository videoRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Video addVideo(Video video) {
         video.setVideoTimePosted(new Date());

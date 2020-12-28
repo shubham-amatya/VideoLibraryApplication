@@ -15,7 +15,8 @@ public class UserController{
     private UserService userService;
 
     @PostMapping("user/adduser")
-    public ResponseEntity<User> addUser(@RequestBody User user){return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);}
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);}
 
     @DeleteMapping("deleteuserbyid/{userID}")
     public void deleteUserById(@PathVariable Long userID){userService.deleteUserByUserId(userID);}
