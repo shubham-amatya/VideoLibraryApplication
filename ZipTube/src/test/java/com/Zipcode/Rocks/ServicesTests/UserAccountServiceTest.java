@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringRunner.class)
-public class UserServiceTest {
+public class UserAccountServiceTest {
 
     @TestConfiguration
     static class UserServiceTestContextConfiguration{
