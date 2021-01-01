@@ -1,5 +1,7 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.Filters;
 
+import com.Zipcode.Rocks.Security.Utilities.JwtToken;
+import com.Zipcode.Rocks.Security.Service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

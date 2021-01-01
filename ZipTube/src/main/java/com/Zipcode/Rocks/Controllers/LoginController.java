@@ -1,10 +1,10 @@
 package com.Zipcode.Rocks.Controllers;
 
 
-import com.Zipcode.Rocks.JWT.JwtRequest;
-import com.Zipcode.Rocks.JWT.JwtResponse;
-import com.Zipcode.Rocks.JWT.JwtToken;
-import com.Zipcode.Rocks.JWT.JwtUserDetailsService;
+import com.Zipcode.Rocks.Security.Exchanges.JwtRequest;
+import com.Zipcode.Rocks.Security.Exchanges.JwtResponse;
+import com.Zipcode.Rocks.Security.Utilities.JwtToken;
+import com.Zipcode.Rocks.Security.Service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

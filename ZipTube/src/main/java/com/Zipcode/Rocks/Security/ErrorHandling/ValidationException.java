@@ -1,4 +1,4 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.ErrorHandling;
 
 public class ValidationException extends RuntimeException {
 

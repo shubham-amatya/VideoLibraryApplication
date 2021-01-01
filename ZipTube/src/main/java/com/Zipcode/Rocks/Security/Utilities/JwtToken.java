@@ -1,4 +1,4 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.Utilities;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.Service;
 
 import com.Zipcode.Rocks.Models.User;
 import com.Zipcode.Rocks.Repositories.UserRepository;

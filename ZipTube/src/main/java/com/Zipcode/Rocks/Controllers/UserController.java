@@ -1,13 +1,12 @@
 package com.Zipcode.Rocks.Controllers;
 
-import com.Zipcode.Rocks.JWT.ValidationException;
+import com.Zipcode.Rocks.Security.ErrorHandling.ValidationException;
 import com.Zipcode.Rocks.Models.User;
 import com.Zipcode.Rocks.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.Zipcode.Rocks.Models.User;
 import com.Zipcode.Rocks.Repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;

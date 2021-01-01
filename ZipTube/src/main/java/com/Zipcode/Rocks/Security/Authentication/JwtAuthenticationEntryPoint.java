@@ -1,4 +1,4 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.Authentication;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

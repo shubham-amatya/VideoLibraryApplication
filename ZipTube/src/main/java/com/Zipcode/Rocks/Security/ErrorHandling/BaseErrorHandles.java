@@ -1,4 +1,4 @@
-package com.Zipcode.Rocks.JWT;
+package com.Zipcode.Rocks.Security.ErrorHandling;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
