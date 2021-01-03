@@ -2,107 +2,69 @@ package com.Zipcode.Rocks.ControllersTests;
 import com.Zipcode.Rocks.Controllers.UserController;
 import com.Zipcode.Rocks.Models.User;
 import com.Zipcode.Rocks.Repositories.UserRepository;
-import com.Zipcode.Rocks.Services.UserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+@ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
-    @Autowired
     private MockMvc mvc;
 
-    @MockBean
-    private UserService service;
+    @Mock
+    private UserRepository userRepository;
 
+    @InjectMocks
+    private UserController userController;
 
-    @Test
-    public void testGetCommentsListSuccess() throws URISyntaxException {
-        RestTemplate restTemplate = new RestTemplate();
-        final String baseUrl = "http://localhost:8080/user/jay1";
-        URI uri = new URI(baseUrl);
-        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-        assertThat(result.getStatusCodeValue()).isEqualTo(200);
+    private JacksonTester<User> jsonUser;
+
+    @BeforeEach
+    public void setUp() {
+        JacksonTester.initFields(this, new ObjectMapper());
+        mvc = MockMvcBuilders.standaloneSetup(userController)
+               .build();
     }
 
     @Test
-    public void testGetCommentsListComment() throws URISyntaxException {
-        RestTemplate restTemplate = new RestTemplate();
-        final String baseUrl = "http://localhost:8080/commentsbyvideo/1";
-        URI uri = new URI(baseUrl);
-        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-        assertThat(result.getBody()).contains("Yes!!!");
+    public void canRetrieveByUserNameWhenExists() throws Exception {
+       //given
+       given(userRepository.findUserByUserName("jay1"))
+               .willReturn(new User("jay1", "jayjay", "Jarrell", "Wells", "jay1@aol.com"));
+
+       //when
+       MockHttpServletResponse response = mvc.perform(get("/userbyusername/jay1")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+       //then
+       assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+       assertThat(response.getContentAsString()).isEqualTo(
+               jsonUser.write(new User("jay1", "jayjay", "Jarrell", "Wells", "jay1@aol.com")).getJson());
+
     }
-}
 
 //    @Test
-//    public void findAllUsersTest()
-//            throws Exception {
-
-//        User alex = new User("a1", "a2", "Alex", "Jones","a@aol.com");
-//        BDDMockito
-//        .given(service.getUserByEmail("a2")).willReturn(alex);
-//
-//        mvc.perform(MockMvcRequestBuilders.get("/user/")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].name", is(alex.getEmail())));}
-
-
-//    @Test
-//    public void addUserTest() throws Exception {
-//        User user = new User("HiThere1", "H!Th3r3!", "Heidi", "James", "heja@aol.com");
-//        BDDMockito
-//                .given(repository.save(user))
-//                .willReturn(user);
-//
-//        String expectedContent = "{\"id\":null,\"username\":HiThere1,\"password\":H!Th3r3!,\"firstName\":Heidi,\"lastName\":James,\"email\":heja@aol.com}";
-//
-//        this.mvc.perform(MockMvcRequestBuilders
-//                .post("/user/adduser")
-//                .content(expectedContent)
-//                .accept(MediaType.APPLICATION_JSON)
-//                .contentType(MediaType.APPLICATION_JSON)
-//        )
-//                .andExpect(MockMvcResultMatchers.status().isCreated())
-//                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+//    public void shouldGetUserByEmail() throws Exception {
+//        setUp();
+//        Mockito.when(userController.getUserByUserName("ajl1@aol.com")).thenReturn(new ResponseEntity<User>(HttpStatus.OK));
 //    }
-//    @Test
-//    public void getUserbyUserNameTest() throws Exception {
-//        String givenUsername = "HiThere";
-//        BDDMockito
-//                .given(repository.findUserByUserName("HiThere"))
-//                .willReturn(Optional.of(new User("HiThere", null, null, null, null)));
-//
-//        String expectedContent = "{\"id\":null,\"username\":\"HiThere\",\"password\":null,\"firstName\":null,\"lastName\":null,\"email\":null}";
-//        this.mvc.perform(MockMvcRequestBuilders
-//                .get("/user/" + givenUsername))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().string(expectedContent)); }
 
 
-
+}
 
 

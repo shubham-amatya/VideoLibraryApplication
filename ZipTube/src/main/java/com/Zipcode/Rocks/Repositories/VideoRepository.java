@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface VideoRepository extends CrudRepository<Video, Long>{
 
+    List<Video> findAllByUserName(String username);
 
         Video findVideoByUserName(String username);
 
