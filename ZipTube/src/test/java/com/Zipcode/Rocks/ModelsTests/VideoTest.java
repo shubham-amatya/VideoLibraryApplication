@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 
 public class VideoTest {
@@ -54,9 +55,9 @@ public class VideoTest {
 
     @Test
     public void testTimePosted(){
-        LocalDate expected = LocalDate.now();
+        Date expected = new Date();
         video.setVideoTimePosted(expected);
-        LocalDate actual = video.getVideoTimePosted();
+        Date actual = video.getVideoTimePosted();
         Assert.assertEquals(expected, actual);
     }
 

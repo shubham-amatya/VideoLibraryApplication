@@ -1,7 +1,6 @@
 package com.Zipcode.Rocks.Models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +13,8 @@ public class Comment {
     private String userName;
     private Long videoId;
     private String comment;
-    private LocalDate commentDatePosted;
+    @Temporal(TemporalType.DATE)
+    private Date commentDatePosted;
 
     public Comment(){}
 
@@ -22,7 +22,7 @@ public class Comment {
         this.userName = userName;
         this.videoId = videoId;
         this.comment = comment;
-//        this.commentDatePosted = LocalDate.now();
+
     }
 
     public Long getCommentId() { return commentId; }
@@ -55,7 +55,8 @@ public class Comment {
         this.comment = comment;
     }
 
-    public LocalDate getCommentDatePosted() { return commentDatePosted; }
+    public Date getCommentDatePosted() { return commentDatePosted; }
 
-    public void setCommentDatePosted(LocalDate commentDatePosted) { this.commentDatePosted = commentDatePosted; }
+    public void setCommentDatePosted(Date commentDatePosted) { this.commentDatePosted = commentDatePosted; }
 }
+

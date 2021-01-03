@@ -6,6 +6,7 @@ import com.Zipcode.Rocks.Repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,7 +15,10 @@ public class CommentService {
     @Autowired
     CommentRepository commentRepository;
 
-    public Comment addComment(Comment comment){ return commentRepository.save(comment); }
+    public Comment addComment(Comment comment){
+        comment.setCommentDatePosted(new Date());
+        return commentRepository.save(comment);
+    }
 
     public void deleteComment(Long commentId){
         commentRepository.delete(commentRepository.findCommentByCommentId(commentId));

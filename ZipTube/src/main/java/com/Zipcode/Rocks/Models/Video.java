@@ -1,14 +1,15 @@
 package com.Zipcode.Rocks.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table
 public class Video {
+
 
 
     @Id
@@ -19,7 +20,8 @@ public class Video {
     private String title;
     private String videoURL;
     private String description;
-    private LocalDate videoTimePosted;
+    @Temporal(TemporalType.DATE)
+    private Date videoTimePosted;
 
 
     public Video() {
@@ -30,7 +32,6 @@ public class Video {
         this.videoURL = videoURL;
         this.description = description;
         this.userName = userName;
-        this.videoTimePosted = LocalDate.now();
     }
 
     public Long getVideoId() {
@@ -73,7 +74,7 @@ public class Video {
         this.description = description;
     }
 
-    public LocalDate getVideoTimePosted() { return videoTimePosted; }
+    public Date getVideoTimePosted() { return videoTimePosted; }
 
-    public void setVideoTimePosted(LocalDate videoTimePosted) { this.videoTimePosted = videoTimePosted; }
+    public void setVideoTimePosted(Date videoTimePosted) { this.videoTimePosted = videoTimePosted; }
 }
