@@ -49,13 +49,12 @@ public class VideoService {
         return videoRepository.findVideoByVideoId(videoId);
     }
 
-
-    public Video updateVideoByVideoId(Long videoId, String userName, String title, String description) {
-        Video video = getVideoByVideoId(videoId);
-        video.setTitle(title);
-        video.setDescription(description);
-        video.setUserName(userName);
-        return videoRepository.save(video);
+    public Video updateVideoByVideoId(Long videoId, Video video) {
+        Video videoUpdate = getVideoByVideoId(videoId);
+        videoUpdate.setTitle(video.getTitle());
+        videoUpdate.setDescription(video.getDescription());
+        videoUpdate.setUserName(video.getUserName());
+        return videoRepository.save(videoUpdate);
     }
 
 }
