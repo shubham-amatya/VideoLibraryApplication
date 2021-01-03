@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 
 
-public class UserTest {
+public class UserAccountTest {
     User user = new User("helloKitty", "H!K!tt3", "Tabitha", "Maroon", "tabbym@aol.com");
 
 //   85% test coverage for class without the following:
