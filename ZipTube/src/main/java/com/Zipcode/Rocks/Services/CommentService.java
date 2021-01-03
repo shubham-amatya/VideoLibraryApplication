@@ -32,4 +32,8 @@ public class CommentService {
     public List<Comment> getCommentsByVideo(Long videoId){
         return commentRepository.findCommentsByVideoId(videoId);
     }
+    
+    public List<Comment> getAllComments(){
+        return (List<Comment>) commentRepository.findAll();
+    }
 }
