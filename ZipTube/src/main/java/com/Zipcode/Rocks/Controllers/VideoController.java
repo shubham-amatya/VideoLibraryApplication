@@ -30,7 +30,6 @@ public class VideoController {
         Video video = new Video();
         video.setVideoURL(this.amazonClient.uploadFile(file));
         return videoService.addVideo(video);
-
     }
 
     @DeleteMapping("/deleteVideo")
@@ -52,6 +51,7 @@ public class VideoController {
     public ResponseEntity<List<Video>> getAllVideoByUserName(@PathVariable String userName){
         return new ResponseEntity<>(videoService.getAllVideosByUserName(userName), HttpStatus.OK);
     }
+
 
     @GetMapping("videobytitle/{title}")
     public ResponseEntity <List<Video>> getVideoByTitle(@PathVariable String title){return new ResponseEntity<>(videoService.getVideoByTitle(title), HttpStatus.OK);}
