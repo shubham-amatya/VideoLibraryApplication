@@ -13,7 +13,7 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
     List<Video> findAllByUserName(String username);
 
 //    // custom query to search to videos post by title or description
-//    List<Video> findByTitleContainingOrContentContaining(String title, String description);
+    List<Video> findByTitleContainingOrDescriptionContaining(String text, String textAgain);
 
         Video findVideoByUserName(String username);
 
@@ -22,7 +22,8 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
         List<Video> findVideoByTitle(String title);
 
 
+
     }
 
-//    // custom query to search to blog post by title or content
-//    List<Blog> findByTitleContainingOrContentContaining(String text, String textAgain);
+
+//    List<Video> findByTitleContainingOrContentContaining(String text, String textAgain);

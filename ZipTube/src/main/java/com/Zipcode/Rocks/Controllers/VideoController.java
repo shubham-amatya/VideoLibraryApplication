@@ -42,6 +42,11 @@ public class VideoController {
         return new ResponseEntity<>(videoService.addVideo(videoFile), HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/deleteVideo")
+    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
+        return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
+    }
+
 //    @PostMapping("video/addvideo")
 //    public ResponseEntity<Video> addVideo(@RequestBody Video video){
 //        return new ResponseEntity<>(videoService.addVideo(video), HttpStatus.CREATED);}
@@ -51,26 +56,20 @@ public class VideoController {
         videoService.deleteVideoByVideoId(videoId);
     }
 
-    @DeleteMapping("/deleteVideo")
-    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-        return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
+    @GetMapping("/video/allvideos")
+    public ResponseEntity <List<Video>> index(){
+        return new ResponseEntity<>(videoService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/video")
-    public List<Video> index(){
-        return videoRepository.findAll();
-    }
+//    @GetMapping("/video/{id}")
+//    public Video show(@PathVariable Long id){
+//        return videoRepository.findVideoByVideoId(id);
+//    }
 
-    @GetMapping("/video/{id}")
-    public Video show(@PathVariable String id){
-        long videoId = Long.parseLong(id);
-        return videoRepository.findById(videoId).orElse(new Video());
-    }
-
-    @PostMapping("/video/search")
-    public List<Video> search(@RequestBody Map<String, String> body){
-        String searchTerm = body.get("title");
-        return videoRepository.findVideoByTitle(searchTerm);
+    @GetMapping("/video/search")
+    public ResponseEntity <List<Video>> search(@RequestBody Map<String, String> body){
+        String searchTerm = body.get("text");
+        return new ResponseEntity<>(videoService.findByTitleContainingOrDescriptionContaining(searchTerm, searchTerm), HttpStatus.OK);
     }
 
 
