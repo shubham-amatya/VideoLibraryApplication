@@ -57,4 +57,11 @@ public class VideoService {
         return videoRepository.save(videoUpdate);
     }
 
+    public List<Video> findAll() {
+        return videoRepository.findAll();
+    }
+
+    public List<Video> findByTitleContainingOrDescriptionContaining(String searchTerm, String searchAgain) {
+        return videoRepository.findByTitleContainingOrDescriptionContaining(searchTerm, searchAgain);
+    }
 }

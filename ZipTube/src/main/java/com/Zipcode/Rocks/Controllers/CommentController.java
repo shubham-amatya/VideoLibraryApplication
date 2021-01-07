@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost"})
 public class CommentController {
     @Autowired
     CommentService commentService;
@@ -18,6 +19,11 @@ public class CommentController {
 
     @DeleteMapping("deletecomment/{commentID}")
     public void deleteCommentById(@PathVariable Long commentID){commentService.deleteComment(commentID);}
+
+    @GetMapping("comments/allcomments")
+    public ResponseEntity<List<Comment>> getAllComments(){
+        return new ResponseEntity<>(commentService.getAllComments(), HttpStatus.OK);
+    }
 
     @GetMapping("commentsbyvideo/{videoID}")
     public ResponseEntity<List<Comment>> getCommentsByVideoID(@PathVariable Long videoID){return new ResponseEntity<>(commentService.getCommentsByVideo(videoID), HttpStatus.OK);}
