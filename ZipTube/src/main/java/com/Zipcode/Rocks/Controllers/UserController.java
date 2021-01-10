@@ -17,7 +17,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost"})
 public class UserController {
+
     final
     private UserRepository userRepository;
 
