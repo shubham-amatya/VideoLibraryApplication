@@ -64,7 +64,7 @@ public class UserController{
     @GetMapping("user/{email}")
     public ResponseEntity<User> getUserByUserEmail(@PathVariable String email){return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);}
 
-    @PutMapping("user/{userName}")
+    @PutMapping("/user/{username}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String userName) {
         return new ResponseEntity<>(userService.putUserUpdate(userName, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
