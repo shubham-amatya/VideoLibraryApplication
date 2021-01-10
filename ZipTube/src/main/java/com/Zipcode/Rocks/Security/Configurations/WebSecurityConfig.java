@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
+import org.springframework.web.cors.CorsUtils;
 
 
 @Configuration
@@ -69,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
 
                 .authorizeRequests().antMatchers("/authenticate","/user","/storage/video/allvideos","/comments/allcomments").permitAll().
+                requestMatchers(CorsUtils::isPreFlightRequest).permitAll().
 
         anyRequest().authenticated().and().
 

@@ -58,10 +58,10 @@ public class UserController{
     @DeleteMapping("deleteuserbyusername/{userName}")
     public void deleteUserByUserName(@PathVariable String userName){userService.deleteUserByUserName(userName);}
 
-    @GetMapping("user/{userName}")
+    @GetMapping("user/username/{userName}")
     public ResponseEntity<User> getUserByUserName(@PathVariable String userName){return new ResponseEntity<>(userService.getUserByUserName(userName), HttpStatus.OK);}
 
-    @GetMapping("user/{email}")
+    @GetMapping("user/email/{email}")
     public ResponseEntity<User> getUserByUserEmail(@PathVariable String email){return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);}
 
     @PutMapping("user/{userName}")
