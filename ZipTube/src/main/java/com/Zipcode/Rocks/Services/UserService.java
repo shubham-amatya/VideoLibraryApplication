@@ -52,6 +52,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User putUpdateName(String username, String firstName, String lastName){
+        Long id = getUserByUserName(username).getUserId();
+        User user = getUserByUserId(id);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return userRepository.save(user);
+    }
+
     public String getCheckUserNameExists(String username){
         if (userRepository.findUserByUserName(username) != null){
             return username;
