@@ -58,14 +58,19 @@ public class UserController{
     @DeleteMapping("deleteuserbyusername/{userName}")
     public void deleteUserByUserName(@PathVariable String userName){userService.deleteUserByUserName(userName);}
 
-    @GetMapping("userbyusername/{userName}")
+    @GetMapping("user/username/{userName}")
     public ResponseEntity<User> getUserByUserName(@PathVariable String userName){return new ResponseEntity<>(userService.getUserByUserName(userName), HttpStatus.OK);}
 
-    @GetMapping("user/{email}")
+    @GetMapping("user/email/{email}")
     public ResponseEntity<User> getUserByUserEmail(@PathVariable String email){return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);}
 
     @PutMapping("user/{userName}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String userName) {
         return new ResponseEntity<>(userService.putUserUpdate(userName, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
+    }
+
+    @PutMapping("user/updateName/{username}")
+    public ResponseEntity<User> updateName(@RequestBody User user, @PathVariable String username) {
+        return new ResponseEntity<>(userService.putUpdateName(username, user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
 }
