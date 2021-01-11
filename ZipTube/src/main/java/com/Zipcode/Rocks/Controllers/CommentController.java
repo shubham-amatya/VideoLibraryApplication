@@ -19,7 +19,7 @@ public class CommentController {
         return new ResponseEntity<>(commentService.addComment(comment), HttpStatus.CREATED);}
 
     @DeleteMapping("deletecomment/{commentID}")
-    public void deleteCommentById(@PathVariable Long commentID){commentService.deleteComment(commentID);}
+    public void deleteCommentById(@PathVariable Long commentID){ commentService.deleteComment(commentID);}
 
     @GetMapping("comments/allcomments")
     public ResponseEntity<List<Comment>> getAllComments(){
