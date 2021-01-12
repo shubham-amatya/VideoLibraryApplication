@@ -29,8 +29,8 @@ public class CommentController {
     @GetMapping("commentsbyvideo/{videoID}")
     public ResponseEntity<List<Comment>> getCommentsByVideoID(@PathVariable Long videoID){return new ResponseEntity<>(commentService.getCommentsByVideo(videoID), HttpStatus.OK);}
 
-    @PutMapping("comment/{commentID}")
-    public ResponseEntity<Comment> updateUser(@RequestBody Comment comment, @PathVariable Long commentID) {
-        return new ResponseEntity<>(commentService.putEditComment(commentID, comment.getComment()), HttpStatus.OK);
+    @PutMapping("comment/{commentId}")
+    public ResponseEntity<Comment> updateComment(@RequestBody Comment comment, @PathVariable Long commentId) {
+        return new ResponseEntity<>(commentService.putEditComment(commentId, comment.getComment()), HttpStatus.OK);
     }
 }
