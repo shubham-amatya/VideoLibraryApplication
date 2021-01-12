@@ -69,8 +69,8 @@ public class UserController{
         return new ResponseEntity<>(userService.putUserUpdate(username, user.getPassword(), user.getEmail(), user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
 
-    @PutMapping("user/updateName/{userName}")
-    public ResponseEntity<User> updateName(@RequestBody User user, @PathVariable String userName) {
-        return new ResponseEntity<>(userService.putUpdateName(userName, user.getFirstName(), user.getLastName()), HttpStatus.OK);
+    @PutMapping("user/updateName/{username}")
+    public ResponseEntity<User> updateName(@RequestBody User user, @PathVariable String username) {
+        return new ResponseEntity<>(userService.putUpdateName(username, user.getFirstName(), user.getLastName()), HttpStatus.OK);
     }
 }
