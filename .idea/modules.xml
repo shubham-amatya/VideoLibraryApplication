@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VideLibraryApplication.iml" filepath="$PROJECT_DIR$/VideLibraryApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZipTube/ZipTube.iml" filepath="$PROJECT_DIR$/ZipTube/ZipTube.iml" />
     </modules>
   </component>
