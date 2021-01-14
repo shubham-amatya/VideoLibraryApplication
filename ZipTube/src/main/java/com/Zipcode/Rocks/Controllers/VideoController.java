@@ -88,8 +88,9 @@ public class VideoController {
 
     @PutMapping("video/{videoId}")
     public ResponseEntity<Video> updateVideoByVideoId(@RequestBody Video video, @PathVariable Long videoId){
-        return new ResponseEntity<>(videoService.updateVideoByVideoId(videoId, video), HttpStatus.OK);
+        return new ResponseEntity<>(videoService.updateVideoByVideoId(videoId, video.getUserName(), video.getTitle(), video.getDescription()), HttpStatus.OK);
     }
+
 
 }
 

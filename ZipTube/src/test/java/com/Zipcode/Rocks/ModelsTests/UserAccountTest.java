@@ -9,21 +9,13 @@ import org.junit.jupiter.api.Test;
 public class UserAccountTest {
     User user = new User("helloKitty", "H!K!tt3", "Tabitha", "Maroon", "tabbym@aol.com");
 
-//   85% test coverage for class without the following:
-//    @Test
-//    public void nullaryUserTest(){}
-//
-//    @Test
-//    public void overLoadedUserTest(){
-//    }
-//
-//    @Test
-//    public void getUserIdTest() {
-//    }
-//
-//    @Test
-//    public void setUserIdTest() {
-//    }
+    @Test
+    public void getUserIdTest() {
+        Long expected = 123L;
+        user.setUserId(123L);
+        Long actual = user.getUserId();
+        Assert.assertEquals(expected, actual);
+    }
 
     @Test
     public void getUserNameTest() {
