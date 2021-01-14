@@ -52,12 +52,12 @@ public class VideoController {
 //        return new ResponseEntity<>(videoService.addVideo(video), HttpStatus.CREATED);}
 
     @DeleteMapping("deletevideo/{videoId}")
-    public void deleteVideoByVideoId(@PathVariable Long videoId) {
+    public void deleteVideoByVideoId(@PathVariable Long videoId){
         videoService.deleteVideoByVideoId(videoId);
     }
 
     @GetMapping("/video/allvideos")
-    public ResponseEntity<List<Video>> index() {
+    public ResponseEntity <List<Video>> index(){
         return new ResponseEntity<>(videoService.findAll(), HttpStatus.OK);
     }
 
@@ -67,7 +67,7 @@ public class VideoController {
 //    }
 
     @GetMapping("/video/search")
-    public ResponseEntity<List<Video>> search(@RequestBody Map<String, String> body) {
+    public ResponseEntity <List<Video>> search(@RequestBody Map<String, String> body){
         String searchTerm = body.get("text");
         return new ResponseEntity<>(videoService.findByTitleContainingOrDescriptionContaining(searchTerm, searchTerm), HttpStatus.OK);
     }
@@ -77,20 +77,20 @@ public class VideoController {
 //    public ResponseEntity<Video> getVideoByUserName(@PathVariable String userName){return new ResponseEntity<>(videoService.getVideoByUserName(userName), HttpStatus.OK);}
 
     @GetMapping("allvideosbyusername/{userName}")
-    public ResponseEntity<List<Video>> getAllVideoByUserName(@PathVariable String userName) {
+    public ResponseEntity<List<Video>> getAllVideoByUserName(@PathVariable String userName){
         return new ResponseEntity<>(videoService.getAllVideosByUserName(userName), HttpStatus.OK);
     }
 
     @GetMapping("videobytitle/{title}")
-    public ResponseEntity<List<Video>> getVideoByTitle(@PathVariable String title) {
-        return new ResponseEntity<>(videoService.getVideoByTitle(title), HttpStatus.OK);
-    }
+    public ResponseEntity <List<Video>> getVideoByTitle(@PathVariable String title){
+        return new ResponseEntity<>(videoService.getVideoByTitle(title), HttpStatus.OK);}
 
 
     @PutMapping("video/{videoId}")
-    public ResponseEntity<Video> updateVideoByVideoId(@RequestBody Video video, @PathVariable Long videoId) {
-        return new ResponseEntity<>(videoService.updateVideoByVideoId(videoId, video), HttpStatus.OK);
+    public ResponseEntity<Video> updateVideoByVideoId(@RequestBody Video video, @PathVariable Long videoId){
+        return new ResponseEntity<>(videoService.updateVideoByVideoId(videoId, video.getUserName(), video.getTitle(), video.getDescription()), HttpStatus.OK);
     }
+
 
 }
 
