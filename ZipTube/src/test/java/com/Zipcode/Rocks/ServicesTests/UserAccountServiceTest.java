@@ -137,30 +137,17 @@ public class UserAccountServiceTest {
 
     }
 
-
-
-
-
-//  @Test
-//    public void updateUserNameTest() {
-//        //given
+//    @Test
+//    public void updateNameTest() {
 //        User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
-//        user.setUserId(7L);
-//        doReturn(user).when(userRepository).findUserByUserName("alex1");
+//        user.setUserId(6L);
 //
-//        //when
-//        User expected = new User("alex1", "1234", "Alexander", "Jones", "alexj@aol.com");
-//        expected.setUserId(7L);
-//        User actual = userService.putUpdateName("alex1", "Alexander", "Jones");
+//        doReturn(user).when(userRepository).save(user);
 //
-//        assertThat(expected).isEqualTo(actual);
-//    }
-//    public User putUpdateName(String username, String firstName, String lastName){
-//        Long id = getUserByUserName(username).getUserId();
-//        User user = getUserByUserId(id);
-//        user.setFirstName(firstName);
-//        user.setLastName(lastName);
-//        return userRepository.save(user);
+//        User expectedResponse = userService.putUpdateName("alex1", "Alexander", "Jones");
+//
+//        assertThat(user).isEqualTo(expectedResponse);
+//
 //    }
 
 }
