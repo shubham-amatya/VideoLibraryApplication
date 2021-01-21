@@ -22,7 +22,7 @@ public class UserAccountServiceTest {
 
 
     @Test
-    public void findUserByUsernameTest() {
+    public void getUserByUsernameTest() {
         //given
         String username = "alex1";
         User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
@@ -37,7 +37,7 @@ public class UserAccountServiceTest {
     }
 
     @Test
-    public void findUserById() {
+    public void getUserById() {
         //given
         Long userId = 1L;
         User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
@@ -53,7 +53,7 @@ public class UserAccountServiceTest {
     }
 
     @Test
-    public void findByUserByEmailTest() {
+    public void getByUserByEmailTest() {
         //given
         String email = "alexj@aol.com";
         User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
@@ -68,16 +68,15 @@ public class UserAccountServiceTest {
     }
 
     @Test
-    public void checkUserNameExistsTest() {
+    public void checkUsernameExistsTest() {
         User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
         String usernameGiven = "alex1";
-        String response = "DOES NOT EXIST";
 
-        doReturn(null).when(userRepository).findUserByUserName(usernameGiven);
+        doReturn(user).when(userRepository).findUserByUserName(usernameGiven);
 
         String expectedResponse = userService.getCheckUserNameExists(usernameGiven);
 
-        assertThat(expectedResponse).isEqualTo(response);
+        assertThat(expectedResponse).isEqualTo(usernameGiven);
 
     }
 
@@ -93,5 +92,75 @@ public class UserAccountServiceTest {
         assertThat(expectedResponse).isEqualTo(emailGiven);
 
     }
+
+    @Test
+    public void addUserTest() {
+        User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
+
+        doReturn(user).when(userRepository).save(user);
+
+        User expectedResponse = userService.addUser(user);
+
+        assertThat(expectedResponse).isEqualTo(user);
+
+    }
+
+
+
+    @Test
+    public void deleteUserByUsernameTest() {
+        User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
+        String username = "alex1";
+        userService.deleteUserByUserName(username);
+        String response = "DOES NOT EXIST";
+
+        doReturn(null).when(userRepository).findUserByUserName(username);
+
+        String expectedResponse = userService.getCheckUserNameExists(username);
+
+        assertThat(expectedResponse).isEqualTo(response);
+
+    }
+
+    @Test
+    public void deleteUserByIdTest() {
+        User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
+        user.setUserId(7L);
+        Long id = 7L;
+        userService.deleteUserByUserId(id);
+
+        doReturn(null).when(userRepository).findUserByUserId(id);
+
+       User expectedResponse = userService.getUserByUserId(id);
+
+        assertThat(expectedResponse).isEqualTo(null);
+
+    }
+
+
+
+
+
+//  @Test
+//    public void updateUserNameTest() {
+//        //given
+//        User user = new User("alex1", "1234", "Alex", "Jones", "alexj@aol.com");
+//        user.setUserId(7L);
+//        doReturn(user).when(userRepository).findUserByUserName("alex1");
+//
+//        //when
+//        User expected = new User("alex1", "1234", "Alexander", "Jones", "alexj@aol.com");
+//        expected.setUserId(7L);
+//        User actual = userService.putUpdateName("alex1", "Alexander", "Jones");
+//
+//        assertThat(expected).isEqualTo(actual);
+//    }
+//    public User putUpdateName(String username, String firstName, String lastName){
+//        Long id = getUserByUserName(username).getUserId();
+//        User user = getUserByUserId(id);
+//        user.setFirstName(firstName);
+//        user.setLastName(lastName);
+//        return userRepository.save(user);
+//    }
 
 }
