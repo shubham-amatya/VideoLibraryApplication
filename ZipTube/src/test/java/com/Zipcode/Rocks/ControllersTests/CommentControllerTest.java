@@ -53,14 +53,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ZipTubeApplication.class)
 @AutoConfigureMockMvc
-@TestPropertySource(properties = {"DATASOURCE_USER=teamc2admin",
-        "DATASOURCE_PW=zipcodeteamc2",
-        "DATASOURCE_URL=jdbc:mysql://c2database.crmi77kbrqrs.us-east-1.rds.amazonaws.com:3306/ziptubedb",
-       "endpointUrl=https://s3.us-east-1.amazonaws.com",
-        "accessKey=AKIAJGGGQLX6LFTYEB4Q",
-        "secretKey=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",
-        "bucket=teamc2ziptube"
-})
+
 
 
 
