@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ZipTubeApplication.class)
+
 @AutoConfigureMockMvc //(, secretKey)
 @TestPropertySource(locations = {"classpath:application.properties"})
 
@@ -41,6 +42,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //        "aws.secret_access_key=${secretKey}",
 //        "aws.bucket= ${bucket}"
 //})
+
+
+@AutoConfigureMockMvc
 
 
 public class CommentControllerTest {
