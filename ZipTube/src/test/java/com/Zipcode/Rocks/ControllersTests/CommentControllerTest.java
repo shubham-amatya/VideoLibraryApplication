@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //})
 
 
-@AutoConfigureMockMvc
+    @AutoConfigureMockMvc
 
 
 public class CommentControllerTest {
